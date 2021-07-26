@@ -26,7 +26,7 @@ The works are divided into categories: Books, Movies, Music.
 
 #### 1. Install docker and docker-compose
 
-Если у вас уже установлены docker и docker-compose, этот шаг можно пропустить, иначе можно воспользоваться официальной [инструкцией](https://docs.docker.com/engine/install/).
+If you have docker и docker-compose, use next step. Else: use official [docs](https://docs.docker.com/engine/install/).
 
 #### 2. Run Docker container
 ```bash
@@ -38,24 +38,36 @@ docker-compose down
 ```
 
 ## Use
-### 1. Create migrations
+
+### Run
 ```bash
-docker-compose run web python manage.py makemigrations
+sudo docker-compose exec web bash
 ```
 
-### 2. Migrate
+#### 1. Create migrations
 ```bash
-docker-compose run web python manage.py migrate
+python manage.py makemigrations api
+python manage.py makemigrations
 ```
 
-### 3. Create Superuser Django
+#### 2. Migrate
 ```bash
-docker-compose run web python manage.py createsuperuser
+python manage.py migrate
 ```
 
-### 4. Initial start-data:
+#### 3. Create Superuser Django
 ```bash
-docker-compose run web python manage.py loaddata fixtures.json
+python manage.py createsuperuser
+```
+
+#### 4. Initial start-data:
+```bash
+python manage.py loaddata fixtures.json
+```
+
+#### 5. Include static file
+```bash
+python manage.py collectstatic
 ```
 
 ## Author
